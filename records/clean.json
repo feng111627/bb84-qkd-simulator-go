@@ -1,0 +1,177 @@
+{
+  "status": "success",
+  "reason": "协议成功：QBER=0.00%（正常噪声范围内），产出 4456 比特安全密钥",
+  "config": {
+    "seed": 1,
+    "n": 20000,
+    "source_pulse_success": 0.9,
+    "channel_loss": 0.2,
+    "channel_noise": 0,
+    "eavesdrop_fraction": 0,
+    "detector_efficiency": 0.9,
+    "detector_dark_count": 0,
+    "sample_fraction": 0.3,
+    "abort_threshold": 0.08,
+    "leakage_margin": 32,
+    "key_min_length_bits": 64
+  },
+  "stages": [
+    {
+      "name": "quantum-link",
+      "detail": "制备 20000 个脉冲，其中 18017 个发出光子；Bob 成功探测 12891 次（暗计数 0 次）",
+      "values": [
+        {
+          "k": "pulses",
+          "v": 20000
+        },
+        {
+          "k": "emitted",
+          "v": 18017
+        },
+        {
+          "k": "detections",
+          "v": 12891
+        },
+        {
+          "k": "dark_detections",
+          "v": 0
+        }
+      ]
+    },
+    {
+      "name": "sifting",
+      "detail": "基比对后保留 6413 个位置（其中暗计数 0，被 Eve 触碰 0）",
+      "values": [
+        {
+          "k": "sifted_bits",
+          "v": 6413
+        },
+        {
+          "k": "sift_rate",
+          "v": 0.49747886122100693
+        },
+        {
+          "k": "dark_fraction_in_sifted",
+          "v": 0
+        },
+        {
+          "k": "eve_fraction_in_sifted",
+          "v": 0
+        }
+      ]
+    },
+    {
+      "name": "qber-estimation",
+      "detail": "抽样 1924 比特，发现 0 个误码，QBER=0.0000；正常噪声期望 0.0000（99%上界 0.0028），z=0.00",
+      "values": [
+        {
+          "k": "sample_size",
+          "v": 1924
+        },
+        {
+          "k": "errors",
+          "v": 0
+        },
+        {
+          "k": "qber",
+          "v": 0
+        },
+        {
+          "k": "noise_expected",
+          "v": 0
+        },
+        {
+          "k": "noise_upper99",
+          "v": 0.002804829974548582
+        },
+        {
+          "k": "z_score",
+          "v": 0
+        },
+        {
+          "k": "sample_eve_fraction",
+          "v": 0
+        }
+      ]
+    },
+    {
+      "name": "decision",
+      "detail": "QBER 0.0000 ≤ 阈值 0.0800，且 z=0.00 ≤ 2.33：误码可由正常信道噪声解释，继续后处理",
+      "values": [
+        {
+          "k": "threshold",
+          "v": 0.08
+        }
+      ]
+    },
+    {
+      "name": "error-correction",
+      "detail": "CASCADE 共 1 轮，翻转 0 个比特，公开 1 个奇偶校验位，残余不一致 0",
+      "values": [
+        {
+          "k": "ec_rounds",
+          "v": 1
+        },
+        {
+          "k": "ec_flips",
+          "v": 0
+        },
+        {
+          "k": "ec_leak_bits",
+          "v": 1
+        },
+        {
+          "k": "ec_residual_diff",
+          "v": 0
+        }
+      ]
+    },
+    {
+      "name": "privacy-amplification-setup",
+      "detail": "按单向量子信息界估计安全长度：4489 - h(0.0000)*6413 - 1(泄露) - 32(裕量) = 4456 比特",
+      "values": [
+        {
+          "k": "secret_bits",
+          "v": 4456
+        }
+      ]
+    },
+    {
+      "name": "privacy-amplification",
+      "detail": "Toeplitz 通用哈希将 4489 比特压缩为 4456 比特最终密钥",
+      "values": [
+        {
+          "k": "final_key_bytes",
+          "v": 557
+        }
+      ]
+    }
+  ],
+  "raw_bits_hex": "65d6fac4a9cdd268ee31bad16c6c3b3b3396e35a47de2d451cb3bfb33347fe478b22f1a6ca8c91ea7df62076473fc4e373710239ab33ce263e1ea3e35bcbce6697ce2aa9831496b12319eafa2b64878c16b27f76d2e4c3a733d79b4d42b6230c9dd9979791837652c1000476ded4e831960f2aa5331fccbe708a6c4fec3b068bf30036e3de0c9e130073960c1dab5ab6d7994aad888c2a8cd26acb9c9967612653e2ac0470481bca1ef584a6bc64e2b043263e697fc6a6552bed31801094024953d672adbedb944240bd89ac35cc57055552254297fc53a9134cb349d2e4e49d0405a5b339c85140d6262e482b153db470458ec2fe9807674a7cd959d45bbdeccd88d169fa25505453cf47ee66ebc332e93cd245e08b659df6f7285aef78e44260ea430be2ec490eefe32d0cdedb8f45e8b1c373bc98cc93032f017dc126081b4d0bb1a1fda9f15527eb06e81337aa1aa0484e687876ed82efaaba3e68d4b9fbfeaeef8f13df07649aff6045c73611c22550c17140c3572445277ff95f9aa7a8446ee80b76a6c2df4d8695736c1eb9d6be0131580fc1b6b1c47ff2f32aa1945d4d83dcd57689515852fed64bdef405e3d54c0b487fb3090dd08a84b1179ec7b971466912123c697544aaab935f3b4912f6c1982418539814b023e3c27e691a120714f832079da7cb3a71f681428c5c9be9b924bd0e175628620520de203234bf63a2978dd7adb0b6066b6d98844faeab21263702a871c8029b6c796deac3a0eca3b354705ad08dfdf45310cf85123505e476c0d35aec9841f303d4f9a68e666cfb08dad043d4218b75fbdf9fe941f5331cdbc81fae440d99df0f74e5248886808f81a863aa38853183934e95cf2e0aca1add8a7b853dcb1775cac0c1c23290d24d49a940a4ce3b0d8fda930b37313392313604000dcbbc20dd0a8e2a4403ec3b53f64afbd6e14feadb46dfebd6e949337c15b82efe2cea9c9523e1b497bed018b4b8889af66d2ce0af116097b69d8b678b247daa252960106f1a3ddafbb7f0857933bdc6aafddd25dfd940d4e746f9dd33bbe761471cfbe7b1277f6f491951584bb1c4a517c3a7c6148ca7986c2a79743fe095f6360d13df606af851ec6ff3401bd4b935195c928a9afdaf143ec87bdc0404df935a79566da1635331a12f01715ee99a7084fa663032107c005c93406be4d9fbd636846129b829376ae452746db2e3d10e2cedf9d655c6c2d6b4f544b7b09282fd5ac9ceabd0f313d6d0925a0a9a9aa7fcb5fc87fa8f26a82103b6ec7b6b9c9223db117a9870cfdda7e2f5eec80068c5635c8d512d1ed955a76970a41fee4ae1a5ad3f29609b9928596d060acace346efd2c9d2cc5ccab00244b5f2b5b10a819cf5aeef9ca2bb04886d60f7e2cabb475db92c14a5460e65174baaee1b8544f9ea1e11022d64b131d73251ec8f21689ec3b6f11923fdf6164263e4f648618348385ec7cc040a3e8d2f89e858ef102bbbfe7d173a8de3173b01be619b38fba0f0b324f30d4764934ae5a734f12959f2038936606f8838e850aaf3a264010d9da916f3e20edcdf0a0b7e5afebe4dec82c558f02b5091649cc53b852bd4908bd7cc7cd4c85937cea9ec0c496de261f4a9f942bffbb986706b82c9b846c5200fc897bc911de21b02fca3e811c2a2f38df4f158dbc52c1ff5ca6f47e5e033cb3ec68a46bfa3e7e9fb44c0fd72e59f17e73395a2e895f76ffde726b85e45cb5b2115fc4da958b947e09fcf1b5d35122195ddd0a30d1730efe5d458fbfb9754ebe85e4ffc07c5c55355a770e70a6d5aaf2eaf3e382ad4d31cca681cc3092e25fed9f7a8d09d3a731dcbfba99102e53e96b18d69f3ab99e87b6cdcdb3e5fa47474f47981b832db8edfadacc32ad9bbd3133556741438a7e15189f6271549712854cdf118a7bd3896741385b42766efb81cf0f7f2426283641141f42345d78dad99eae0e89072a97b7a6b584d7d429e4e2d9109f84242391e0ed60d5493bdcbae2747b2f6e09fdc4c8453c59761e432f25fb874fe70aadc8d6504bf31691a69ee9cc3fb79567cda50f3f7badd601aed904272dc4fe3c0a78e556a12af8c3d78287808e135b1d365fe191018d1b55b3813e7a9e91b6bbd09e4dce088f2f0c34e7e18f9b9bb59df7da29431cf36c41faf76b4d6d098c4ea7bd18ac965743a3a24de11e3334da2a66f10ee765cbab6f1c320e762ab81b6f60e4cd3518fdb5b4a757dea9d48c0026724db64b01438bed56252388b3711e98d0db41094da483e0eaa41bc053e683fb8525d0af0ec94662fc1a50375060af340cc196b547dafadfc51d9a98288799268ab94ac9291db9e314c3187c3421091a6f8e6179566d909e0d754781e344c835c96c431b2202315bfc5c11b095d5c69e80e46a2a679446c7eb29ee825eb5bde6210f3b704711a5456862c845aa921474e90de7f76a377172b9238a9087aafc9a19a55db592840fedcd0c45de8b0036b165d523e8ad9a0b9cc3422c70d8e4da26136c3541fae47a5e5d6df3c6367c49ab783ecc709b02b79487f7b54306142e1a148a9c00fc07264447cc5cd79c11a673eb9526e9627125eb734f4a12826ac2603d2a75bd7595e223824d9604b68c8e9105a1aa853070a0d9dfe6acf113a37acd0b43d9a3b517ee7140a3b2a75c42faa59422f8438d9511d75eb2873961ddb1c6b3833bd2ae56096592fa53ffee6194c9bfbf5d9a5e4380a57e562a51653a7038527c7d7a6c80a8ff35de75548c224f849d22e5e37e508cd1f6b5d001cfab4252098b5073f987339b3d53243db3754f698b3ff8014ae51bff69df28838224aa88db558d665e46c2f666e03c843cdbd772f43c41fbff50ffb6b384c9d1a4098b2e50cdba6ff5932094b5709d2c5f6daff981107af924e2bfc4db054a53b7d134f0720055c076a2bf4d9ee3973109cc4f64a7b161dba74603158a55823eb828431e2be80219a59d5c51f3e6c0e7626f5698a325266229af487c16ac8ccb8fd03001f1b3ed2b0170377aa3e5bf04281b84a157c6137750e99ea092c296a0d6230729b8097fe3666972f3ff4e4dbdac0688fd28997a5367394752e1253cf1508190811c2fd1e4e75db0c351b74de76a43302ca31e5f9dc91e4cd3c7b9d18e25d90f824dcfb5d7c0a2dd56df0f1793d0e400caa8217d8d13d15cd500",
+  "sifted_key_hex": "d9139b3cdbd994b5bd7bf89f1fbecadbec82bf5b6df0822bf36575e8aa87b3fa6abcb384ca849e6a2c3d33aa7bf6a08f0be695ed4a34b3ac0d3741b6d3cf03f4f33f5051fd0bf099945489f211ba42a730264c9ec84c87723dff378849425753370c5e96d704a874c6a7775631c33106035e697f6a79468261a2edbc4fc62e7c4a1506b38d1bcf149d4a61abfc51204f3bdb1a4a70219bbe5b2e407a884acf8a4c662275f92b8e83245886c5904fcb9dbfacac562801837245b52dd578c3dc042a836ca77a719617300dc24f87a91d52c908beaecbc736f8d32612605d16c968b250b44ca1698d3485d0f3fc6b09882a834352aec7d95f8b8fb66e133581a0007f60d55c5b0ad374d4fba733f874874a2a37fbe1488a190992d5ec4cc5d1c7fac3e56233ed7f1e54323b96c592afa00b38e022d3ef00464a52e35f87e47070ac176b24dfc457c125b1b36cfc37bc2fe3fe8f4a72c30ba28035b794c6415e117ebd86a5d37ce300cd86f44450b924da7ceb46ba6139f8112a75f0777e8b6ff9c73471a0aa1a0ca873125680af177f53275d70d808244ff609f949bb69da97ce3085a4aa19d842bd9af2560fe86bdd637016d3032dfcdf22d9b59c714f863a03d94af637f2b74263b4d6de4b231a00ead9d6e88d2be421f14dde533fe60e542bcabc8393b68f587dd65e6a89dda89e8e401268dfce70d0a3f324e41879b49266d6de89997a66e5b7adc3d2a199bc7b0247454f70cccf82b8937916d3276fab57ee2246ebeae2e96662196a49aca10dc6bb1f09a961bb1de5b07005b5450b7dd81cb176d0056038e31713fa2851c4a9bb6c197311a906032e9d94a45944e31a963485f7a56d5dbc395404296aca1fa569417916ec80f91707263b674e22ca45e24cd7827757899a93092492dc4676f6bddf2a2cfbae18288c14b1020a8a5afad9ec39677c6844a9d267d714c305f58ef8ab823d9824fcc0f6a718317ac01cb10b092773ac0aca44dcff23c3434d2c187c9b8dc320d4588267725baf0375fce4b0d8838e633b9963d76f06c4765af5a01849c136310a36fe10b60344fd593245ac1cb534465f137d4e6614cf5ac802443a694d1db892a65d06dd1c47ab7ff191888c460b",
+  "final_key_hex": "f1fe6768209938b3a33fb2915f694fbf7584d2172f9bfb23e1d7067cb105006e4191e06facee080da2624ad842c3d6cffbe66ef0d9472acb37592b413de14d18e2e551f6f62569608e7d5a2d025fc0f98c43508f0903cb1b64c3183ddadea2db89994e13fbe2a64421785b3b1d76ce88e33bbcba4cfe07c2b5edde254802d3b76d6641e5fae54d058a65e644730249ac90d609cc89a7836d0b41274261b38bcea4ff02bd1e0620ccbb94df534f81d23507f786a2e7c5b1d31d390149d70823485fc91b9283c3da798be022e233e61a04d48efc74eb7eb39a056e1d3c03383fb4abcaf1387974e3f4c482ac8508ebfd853712a62c5b96843d9321fe819cc8511c3481a6e289707c79341b889a18cf81035300d11153078914f2ea9730724895a9ed8fbdfa8d22726266073e36b4927811f9409b38631a2e284b48b368f7a13124a7f8c11958243d047343a2cbc3cf75a0ef67b01c8d405b34fbb7a80625a2320e1acd26bc98d5a3d8ab222d91631f9aa97e179c0236667eb882a23e2f47fe0386992f23904b4738136616bd4ab754ba4ed7a3d07210b5a1602e80fdfcd1028b6d0eab20eb5066349cb6312af0563b6cca90387f31268213822bb2d506ada278f0ccf64d292f236e37792f16608b2d847201182fdf9adfa0a76381e4307b0e53c1be1fa3f3eb91f4425c11f5a5f3f344a77d7e1af029f2d920dd12e984a471859237ad1393c5f48572b7f725c353104bd09dbfa6c5c4141908d8f89864323d93c7af31720ebd15c47ee3d97364ba",
+  "metrics": {
+    "dark_detections": 0,
+    "dark_fraction_in_sifted": 0,
+    "detections": 12891,
+    "ec_flips": 0,
+    "ec_leak_bits": 1,
+    "ec_residual_diff": 0,
+    "ec_rounds": 1,
+    "emitted": 18017,
+    "errors": 0,
+    "eve_fraction_in_sifted": 0,
+    "final_key_bytes": 557,
+    "noise_expected": 0,
+    "noise_upper99": 0.002804829974548582,
+    "pulses": 20000,
+    "qber": 0,
+    "sample_eve_fraction": 0,
+    "sample_size": 1924,
+    "secret_bits": 4456,
+    "sift_rate": 0.49747886122100693,
+    "sifted_bits": 6413,
+    "threshold": 0.08,
+    "z_score": 0
+  }
+}
